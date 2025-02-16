@@ -20,6 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct GestionGastosApp: App {
+    @StateObject private var mesesCRUD = MesesCRUD()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     @State var categories = [
@@ -34,7 +35,7 @@ struct GestionGastosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(mesesCRUD)
         }
     }
 }

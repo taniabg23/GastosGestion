@@ -42,7 +42,6 @@
 			isa = PBXGroup;
 			children = (
 				1F06A26B2D5BFEE4001D43A6 /* GestionGastos */,
-				1F06A2CB2D5C1360001D43A6 /* Frameworks */,
 				1F06A26A2D5BFEE4001D43A6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,13 +52,6 @@
 				1F06A2692D5BFEE4001D43A6 /* GestionGastos.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1F06A2CB2D5C1360001D43A6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
