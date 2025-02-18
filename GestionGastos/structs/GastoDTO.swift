@@ -6,17 +6,22 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
-struct GastoDTO: Identifiable {
-    var id: UUID
+struct GastoDTO: Identifiable, Codable {
+    @DocumentID var id: String?
     var titulo: String
     var descripcion: String
     var importe: Double
     var fecha: Date
+    
+    var wrappedID: String {
+        id ?? UUID().uuidString
+    }
 }
 
 extension GastoDTO {
-    static var emptyGasto : GastoDTO {
-        GastoDTO(id: UUID(), titulo: "", descripcion: "", importe: 0.0, fecha: Date())
+    static var emptyGasto: GastoDTO {
+        GastoDTO(id: nil, titulo: "", descripcion: "", importe: 0.0, fecha: Date())
     }
 }

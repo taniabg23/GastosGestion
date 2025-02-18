@@ -38,5 +38,5 @@ struct Gasto: View {
 }
 
 #Preview {
-    Gasto(gasto: GastoDTO(id: UUID(), titulo: "Ropa", descripcion: "Me compré ropa.", importe: 50.80, fecha: Date()))
+    Gasto(gasto: GastoDTO(id: "1", titulo: "Ropa", descripcion: "Me compré ropa.", importe: 50.80, fecha: Date()))
 }

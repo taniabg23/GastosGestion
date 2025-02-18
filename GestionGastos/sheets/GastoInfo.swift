@@ -133,7 +133,7 @@ struct GastoInfo: View {
 }
 
 #Preview {
-    @State var gastoEjemplo = GastoDTO(id: UUID(), titulo: "Ejemplo", descripcion: "Descripción del gasto", importe: 20.50, fecha: Date())
+    @State var gastoEjemplo = GastoDTO(id: "1", titulo: "Ejemplo", descripcion: "Descripción del gasto", importe: 20.50, fecha: Date())
     @State var showModal = true
     @State var listaGastos: [GastoDTO] = [gastoEjemplo]
 
