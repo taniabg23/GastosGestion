@@ -13,6 +13,22 @@ class GastosCRUD: ObservableObject {
     
     private var db = Firestore.firestore()
     
+    func update_gasto(_ gasto: GastoDTO) {
+        let db = Firestore.firestore()
+        db.collection("gastos").document(gasto.wrappedID).setData([
+            "titulo": gasto.titulo,
+            "descripcion": gasto.descripcion,
+            "importe": gasto.importe,
+            "fecha": Timestamp(date: gasto.fecha)
+        ]) { error in
+            if let error = error {
+                print("Error al actualizar el gasto: \(error.localizedDescription)")
+            } else {
+                print("Gasto actualizado correctamente en Firebase")
+            }
+        }
+    }
+    
     func cargarGastosPrueba() {
         self.gastos = [
             GastoDTO(id: "1", titulo: "Ropa", descripcion: "Me compré ropa.", importe: 30.40, fecha: Calendar.current.date(byAdding: .day, value: -1, to: Date())!),

@@ -34,12 +34,18 @@ struct Categoria: View {
 
 #Preview {
     ZStack {
+        /*
         let lista_gastos: [GastoDTO] = [
                 GastoDTO(id: "1", titulo: "Ropa", descripcion: "Me compré ropa.", importe: 30.40, fecha: Date()),
                 GastoDTO(id: "2", titulo: "Alimentación", descripcion: "Una hamburguesita", importe: 12.30, fecha: Date()),
                 GastoDTO(id: "3", titulo: "Ocio", descripcion: "Me fui al cine.", importe: 25.45, fecha: Date()),
             ]
+         */
             
-        Categoria(categoria: CategoriaDTO(nombre: "Alimentación", gastos: lista_gastos, theme: Theme.oxblood))
+        Categoria(categoria: CategoriaDTO(id: "1", nombre: "Ropa", gastos: [
+            GastoDTO(id: "1", titulo: "Chaqueta", descripcion: "Me compré una chaqueta", importe: 23.5, fecha: Date()),
+            GastoDTO(id: "2", titulo: "Pantalón", descripcion: "Me compré unos pantalones", importe: 35.99, fecha: Date()),
+            GastoDTO(id: "3", titulo: "Camiseta", descripcion: "Me compré una camiseta", importe: 9.99, fecha: Date())
+        ], theme: Theme.bubblegum))
     }
 }

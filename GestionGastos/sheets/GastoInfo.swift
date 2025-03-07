@@ -14,13 +14,15 @@ struct GastoInfo: View {
     @State private var gastoTemporal: GastoDTO
     @State private var isEditing: Bool = false
     var dismiss: () -> Void
+    var gastosCRUD: GastosCRUD
 
-    public init(gasto: Binding<GastoDTO>, isPresented: Binding<Bool>, gastoTemporal: GastoDTO, gastos: Binding<[GastoDTO]>, dismiss: @escaping () -> Void) {
-        self._gasto = gasto
-        self._isPresented = isPresented
-        self._gastoTemporal = State(initialValue: gastoTemporal)
-        self._gastos = gastos
-        self.dismiss = dismiss
+    public init(gasto: Binding<GastoDTO>, isPresented: Binding<Bool>, gastoTemporal: GastoDTO, gastos: Binding<[GastoDTO]>, dismiss: @escaping () -> Void, gastosCRUD: GastosCRUD) {
+           self._gasto = gasto
+           self._isPresented = isPresented
+           self._gastoTemporal = State(initialValue: gastoTemporal)
+           self._gastos = gastos
+           self.dismiss = dismiss
+           self.gastosCRUD = gastosCRUD
     }
     
     let numberFormatter: NumberFormatter = {
@@ -111,6 +113,7 @@ struct GastoInfo: View {
                     if isEditing {
                         Button("Aceptar") {
                             gasto = gastoTemporal
+                            gastosCRUD.update_gasto(gasto)
                             isPresented = false
                         }
                     } else {
@@ -133,15 +136,23 @@ struct GastoInfo: View {
 }
 
 #Preview {
-    @State var gastoEjemplo = GastoDTO(id: "1", titulo: "Ejemplo", descripcion: "Descripción del gasto", importe: 20.50, fecha: Date())
-    @State var showModal = true
-    @State var listaGastos: [GastoDTO] = [gastoEjemplo]
+    struct GastoInfoPreview: View {
+        @State private var gastoEjemplo = GastoDTO(id: "1", titulo: "Ejemplo", descripcion: "Descripción del gasto", importe: 20.50, fecha: Date())
+        @State private var showModal = true
+        @State private var listaGastos: [GastoDTO] = []
+        
+        var body: some View {
+            let gastoTemporal = gastoEjemplo
+            GastoInfo(
+                gasto: $gastoEjemplo,
+                isPresented: $showModal,
+                gastoTemporal: gastoTemporal,
+                gastos: $listaGastos,
+                dismiss: { showModal = false },
+                gastosCRUD: GastosCRUD()
+            )
+        }
+    }
 
-    GastoInfo(
-        gasto: $gastoEjemplo,
-        isPresented: $showModal,
-        gastoTemporal: gastoEjemplo,
-        gastos: $listaGastos,  // Pasamos los gastos
-        dismiss: { showModal = false }
-    )
+    return GastoInfoPreview()
 }

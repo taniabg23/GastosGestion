@@ -41,6 +41,7 @@ struct GastoList: View {
             }
             .sheet(isPresented: $isPresentingGastoInfo) {
                 if let index = selectedGastoIndex {
+                    let gastosCRUD = GastosCRUD()
                     GastoInfo(
                         gasto: Binding(
                             get: { gastos[index] },
@@ -53,7 +54,8 @@ struct GastoList: View {
                         gastos: $gastos,
                         dismiss: {
                             isPresentingGastoInfo = false
-                        }
+                        },
+                        gastosCRUD: gastosCRUD
                     )
                 }
             }

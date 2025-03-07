@@ -23,5 +23,5 @@ struct EditCat: View {
 #Preview {
     @Previewable @State var category = CategoriaDTO(nombre: "Ropa", gastos: [], theme: Theme.magenta)
         
-    return EditCat(cat: $category)
+    EditCat(cat: $category)
 }

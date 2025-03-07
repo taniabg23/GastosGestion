@@ -17,7 +17,7 @@ struct CardView: View {
 }
 
 struct CardView_Previews: PreviewProvider {
-    static var category = CategoriaDTO(nombre: "Alimentación", gastos: [], theme: Theme.indigo)
+    static var category = CategoriaDTO(id: "1", nombre: "Alimentación", gastos: [], theme: Theme.indigo)
     static var previews: some View {
         CardView(category: category)
             .background(category.theme.mainColor)

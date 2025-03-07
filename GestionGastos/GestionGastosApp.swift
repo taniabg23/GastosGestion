@@ -21,21 +21,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct GestionGastosApp: App {
     @StateObject private var mesesCRUD = MesesCRUD()
+    @StateObject private var categoriasCRUD = CategoriasCRUD()
+    @StateObject private var gastosCRUD = GastosCRUD()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     @State var categories = [
-        CategoriaDTO(nombre: "Ropa", gastos: [
-            GastoDTO(id: "1", titulo: "Ropa", descripcion: "Me compré ropa.", importe: 30.40, fecha: Date()),
-            GastoDTO(id: "2", titulo: "Alimentación", descripcion: "Una hamburguesita", importe: 12.30, fecha: Date()),
-            GastoDTO(id: "3", titulo: "Ocio", descripcion: "Me fui al cine.", importe: 25.45, fecha: Date())
-        ], theme: Theme.lavender),
-        CategoriaDTO(nombre: "Alimentación", gastos: [], theme: Theme.indigo),
-        CategoriaDTO(nombre: "Ocio", gastos: [], theme: Theme.indigo)
+        CategoriaDTO(id: "1", nombre: "Ropa", gastos: [
+            GastoDTO(id: "1", titulo: "Chaqueta", descripcion: "Me compré una chaqueta", importe: 23.5, fecha: Date()),
+            GastoDTO(id: "2", titulo: "Pantalón", descripcion: "Me compré unos pantalones", importe: 35.99, fecha: Date()),
+            GastoDTO(id: "3", titulo: "Camiseta", descripcion: "Me compré una camiseta", importe: 9.99, fecha: Date())
+        ], theme: Theme.bubblegum),
+        CategoriaDTO(id: "2", nombre: "Alimentación", gastos: [], theme: Theme.buttercup),
+        CategoriaDTO(id: "3", nombre: "Ocio", gastos: [], theme: Theme.lavender)
     ]
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(mesesCRUD)
+            ContentView()
+                .environmentObject(mesesCRUD)
+                .environmentObject(categoriasCRUD)
+                .environmentObject(gastosCRUD)
         }
     }
 }

@@ -6,24 +6,33 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
-struct CategoriaDTO: Identifiable {
-    var id: UUID = UUID()
+struct CategoriaDTO: Identifiable, Codable {
+    @DocumentID var id: String?
     var nombre: String
     var gastos: [GastoDTO]
     var theme: Theme
-    
+
+    var wrappedID: String {
+        id ?? UUID().uuidString
+    }
+
     var totalImporte: Double {
-        var importe_total: Double = 0;
-        for gasto in gastos {
-            importe_total = importe_total + (gasto.importe);
-        }
-        return importe_total;
+        0.0
+    }
+    
+    init(id: String? = nil, nombre: String, gastos: [GastoDTO], theme: Theme) {
+        self.id = id
+        self.nombre = nombre
+        self.gastos = gastos
+        self.theme = theme
     }
 }
 
 extension CategoriaDTO {
-    static var emptyCat : CategoriaDTO {
-        CategoriaDTO (id: UUID(), nombre: "", gastos: [], theme: Theme.sky)
+    static var emptyCat: CategoriaDTO {
+        CategoriaDTO(id: nil, nombre: "", gastos: [], theme: .sky)
     }
 }
+
