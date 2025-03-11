@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1FA444672D7C8AB800D4F020 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 1FA444662D7C8AB800D4F020 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		1F06A27A2D5BFEE7001D43A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA444672D7C8AB800D4F020 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +105,7 @@
 			);
 			name = GestionGastos;
 			packageProductDependencies = (
+				1FA444662D7C8AB800D4F020 /* Supabase */,
 			);
 			productName = GestionGastos;
 			productReference = 1F06A2692D5BFEE4001D43A6 /* GestionGastos.app */;
@@ -177,6 +183,9 @@
 			);
 			mainGroup = 1F06A2602D5BFEE4001D43A6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1FA444652D7C8AB800D4F020 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1F06A26A2D5BFEE4001D43A6 /* Products */;
 			projectDirPath = "";
@@ -540,6 +549,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1FA444652D7C8AB800D4F020 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FA444662D7C8AB800D4F020 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FA444652D7C8AB800D4F020 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1F06A2612D5BFEE4001D43A6 /* Project object */;
 }

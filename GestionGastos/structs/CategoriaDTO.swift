@@ -1,29 +1,24 @@
 //
 //  CategoriaDTO.swift
-//  Gestion_gastos
+//  GestionGastos
 //
-//  Created by Tania Bajo García on 23/9/24.
+//  Created by Tania Bajo García on 8/3/25.
 //
 
 import Foundation
 
-struct CategoriaDTO: Identifiable {
-    var id: UUID = UUID()
+struct CategoriaDTO2: Identifiable, Codable {
+    var id: Int64
     var nombre: String
-    var gastos: [GastoDTO]
-    var theme: Theme
-    
-    var totalImporte: Double {
-        var importe_total: Double = 0;
-        for gasto in gastos {
-            importe_total = importe_total + (gasto.importe);
-        }
-        return importe_total;
-    }
-}
+    var theme: String
+    var mesId: Int64
+    var gastos: [GastoDTO2]? = []  // Nueva propiedad
 
-extension CategoriaDTO {
-    static var emptyCat : CategoriaDTO {
-        CategoriaDTO (id: UUID(), nombre: "", gastos: [], theme: Theme.sky)
+    enum CodingKeys: String, CodingKey {
+        case id
+        case nombre
+        case theme
+        case mesId = "mes_id"
+        case gastos
     }
 }

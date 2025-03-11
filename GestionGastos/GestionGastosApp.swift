@@ -19,9 +19,30 @@ struct GestionGastosApp: App {
         CategoriaDTO(nombre: "Ocio", gastos: [], theme: Theme.indigo)
     ]
     
+    // Función que se ejecutará al iniciar la aplicación
+    func cargarDatosMeses() {
+        Task {
+            do {
+                try await MesesCRUD.singleton.obtenerMesActual()
+                try await MesesCRUD.singleton.obtenerMesesExcluyendoActual()
+
+                print(MesesCRUD.singleton.mes_actual)
+                print(MesesCRUD.singleton.historialMeses)
+            } catch {
+                print("Error al obtener las categorias: \(error)")
+            }
+        }
+    }
+
+
+
+
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().onAppear() {
+                cargarDatosMeses()
+            }
         }
     }
 }
