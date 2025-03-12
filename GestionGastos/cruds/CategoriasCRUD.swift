@@ -42,15 +42,19 @@ class CategoriasCRUD {
     }
 
     func crearCategoria(nombre: String, theme: String, mesId: Int64) async throws -> CategoriaDTO2 {
-        let nuevaCategoria = CategoriaDTO2(id: 0, nombre: nombre, theme: theme, mesId: mesId)
+        var nuevaCategoria = CategoriaDTO2(id: 0, nombre: nombre, theme: theme, mesId: mesId)
         
-        let categoriaResponse: [CategoriaDTO2] = try await supabase
+        var categoriaResponse: [CategoriaDTO2] = try await supabase
             .from("categorias")
             .insert(nuevaCategoria)
             .execute()
             .value
         
-        return categoriaResponse.first ?? nuevaCategoria
+        nuevaCategoria.gastos = []
+        var categoriaResponseConGastos = categoriaResponse.first
+        categoriaResponseConGastos?.gastos = []
+        
+        return categoriaResponseConGastos ?? nuevaCategoria
     }
     
     // En CategoriasCRUD
@@ -65,6 +69,10 @@ class CategoriasCRUD {
             .eq("id", value: String(id)) // Filtrar por ID de la categoría
             .execute()
             .value
+        
+        // obtener los gastos de la categoría
+        var categoriaActualizadaConGastos = categoriaActualizada.first
+        categoriaActualizadaConGastos?.gastos = try await GastosCRUD.singleton.obtenerGastos(forCategoriaId: id)
         
         // Devolver la categoría actualizada
         return categoriaActualizada.first ?? CategoriaDTO2(id: id, nombre: nuevoNombre, theme: nuevoTheme, mesId: 0)

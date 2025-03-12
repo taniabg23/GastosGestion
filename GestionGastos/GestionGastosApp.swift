@@ -23,8 +23,8 @@ struct GestionGastosApp: App {
     func cargarDatosMeses() {
         Task {
             do {
-                try await MesesCRUD.singleton.obtenerMesActual()
-                try await MesesCRUD.singleton.obtenerMesesExcluyendoActual()
+                try await MesesCRUD.singleton.obtenerMesActual(user_id:1)
+                try await MesesCRUD.singleton.obtenerMesesExcluyendoActual(user_id:1)
 
                 print(MesesCRUD.singleton.mes_actual)
                 print(MesesCRUD.singleton.historialMeses)
